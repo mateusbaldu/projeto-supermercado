@@ -1,0 +1,42 @@
+drop schema supermercado cascade;
+drop database supermercado;
+
+create database supermercado;
+create schema supermercado;
+
+set search_path to supermercado;
+
+create table produtos_cadastrados (
+    codigo_de_barras varchar(13) primary key,
+    nome varchar(30),
+    categoria varchar(20),
+    marca varchar(30),
+    preco_de_compra decimal(10, 2)
+);
+
+create table funcionarios (
+    cpf varchar(11) primary key,
+    nome varchar(50),
+    cargo varchar(20),
+    nivel_de_permissao int
+);
+
+create table fornecedores (
+    cnpj varchar(14) primary key,
+    nome varchar(50),
+    endereco varchar(50),
+    informacoes_de_contato varchar(50)
+);
+
+create type status_estoque as enum ('estoque alto', 'disponivel', 'valor minimo', 'indisponivel');
+
+create table estoque (
+    id_estoque bigint primary key,
+    codigo_de_barras varchar(13) references produtos_cadastrados (codigo_de_barras) on delete restrict on update cascade,
+    cnpj_fornecedor varchar(14) references fornecedores(cnpj) on delete restrict on update cascade,
+    preco_venda decimal(10, 2),
+    preco_compra decimal(10, 2),
+    quantidade integer,
+    status status_estoque,
+    alerta_estoque_baixo boolean
+);
