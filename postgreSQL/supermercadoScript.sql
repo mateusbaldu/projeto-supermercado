@@ -52,6 +52,8 @@ create table estoque (
     alertaEstoqueBaixo boolean
 );
 
+create type formaDePagamento as enum ('Pix', 'Cartao de Credito', 'Cartao de Debito', 'Dinheiro', 'Vale Alimentacao');
+
 create table vendas (
     idVenda bigserial primary key not null,
     codigoDeBarrasNotaFiscal varchar(44) unique not null,
@@ -171,3 +173,79 @@ values (
     (select idVenda from vendas where codigoDeBarrasNotaFiscal = '35250632102084000100552256094931561411533235'),
     '7898076580389', 'Biscoito Negresco', 1, 3.00, 3.00
 );
+
+
+
+create view vw_relatorio_vendas_diarias as
+select
+    cast(dataVenda as date) as dia_da_venda,
+    count(idVenda) as quantidade_de_vendas,
+    sum(precoTotalVenda) as valor_total_vendido,
+    sum(case when formaDePagamento = 'Dinheiro' then precoTotalVenda else 0 end) as total_dinheiro,
+    sum(case when formaDePagamento = 'Cartao de Credito' then precoTotalVenda else 0 end) as total_cartao_credito,
+    sum(case when formaDePagamento = 'Cartao de Debito' then precoTotalVenda else 0 end) as total_cartao_debito,
+    sum(case when formaDePagamento = 'Pix' then precoTotalVenda else 0 end) as total_pix,
+    sum(case when formaDePagamento = 'Vale Alimentacao' then precoTotalVenda else 0 end) as total_vale_alimentacao
+from vendas
+group by cast(dataVenda as date)
+order by dia_da_venda;
+
+
+create view vw_relatorio_vendas_mensais as
+select
+    date_trunc('month', dataVenda) as mes_da_venda,
+    count(idVenda) as quantidade_de_vendas,
+    sum(precoTotalVenda) as valor_total_vendido,
+    sum(case when formaDePagamento = 'Dinheiro' then precoTotalVenda else 0 end) as total_dinheiro,
+    sum(case when formaDePagamento = 'Cartao de Credito' then precoTotalVenda else 0 end) as total_cartao_credito,
+    sum(case when formaDePagamento = 'Cartao de Debito' then precoTotalVenda else 0 end) as total_cartao_debito,
+    sum(case when formaDePagamento = 'Pix' then precoTotalVenda else 0 end) as total_pix,
+    sum(case when formaDePagamento = 'Vale Alimentacao' then precoTotalVenda else 0 end) as total_vale_alimentacao
+from vendas
+group by date_trunc('month', dataVenda)
+order by mes_da_venda;
+
+
+create view vw_relatorio_vendas_semanais as
+select
+    date_trunc('week', dataVenda) as semana_da_venda,
+    count(idVenda) as quantidade_de_vendas,
+    sum(precoTotalVenda) as valor_total_vendido,
+    sum(case when formaDePagamento = 'Dinheiro' then precoTotalVenda else 0 end) as total_dinheiro,
+    sum(case when formaDePagamento = 'Cartao de Credito' then precoTotalVenda else 0 end) as total_cartao_credito,
+    sum(case when formaDePagamento = 'Cartao de Debito' then precoTotalVenda else 0 end) as total_cartao_debito,
+    sum(case when formaDePagamento = 'Pix' then precoTotalVenda else 0 end) as total_pix,
+    sum(case when formaDePagamento = 'Vale Alimentacao' then precoTotalVenda else 0 end) as total_vale_alimentacao
+from vendas
+group by date_trunc('week', dataVenda)
+order by semana_da_venda;
+
+
+create view vw_relatorio_produtos_mais_vendidos_por_valor as
+select 
+    pcad.codigoDeBarras,
+    pcad.nome as nome_produto,
+    sum(dv.subtotal) as valor_total
+from detalhesVenda as dv
+join produtos_cadastrados as pcad 
+on dv.codigoDeBarrasProduto = pcad.codigoDeBarras
+group by 
+    pcad.codigoDeBarras,
+    pcad.nome
+order by valor_total desc
+limit 10;
+
+
+create view vw_relatorio_produtos_mais_vendidos_por_quantidade as
+select 
+    pcad.codigoDeBarras,
+    pcad.nome as nome_produto,
+    sum(dv.quantidade) as quantidade_total
+from detalhesVenda as dv
+join produtos_cadastrados as pcad 
+on dv.codigoDeBarrasProduto = pcad.codigoDeBarras
+group by 
+    pcad.codigoDeBarras,
+    pcad.nome
+order by quantidade_total desc
+limit 10;
