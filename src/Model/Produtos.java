@@ -1,16 +1,17 @@
 package Model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
-public class Produto {
+public class Produtos {
     private String codBarras;
     private String nome;
     private String categoria;
     private String marca;
     private String precoCompra;
-    private Date dataValidade;
+    private LocalDate dataValidade;
 
-    public Produto(String codBarras, String nome, String categoria, String marca, String precoCompra, Date dataValidade) {
+    public Produtos(String codBarras, String nome, String categoria, String marca, String precoCompra, LocalDate dataValidade) {
         setCodBarras(codBarras);
         setNome(nome);
         setCategoria(categoria);
@@ -59,11 +60,11 @@ public class Produto {
         this.precoCompra = precoCompra;
     }
 
-    public Date getDataValidade() {
+    public LocalDate getDataValidade() {
         return dataValidade;
     }
 
-    public void setDataValidade(Date dataValidade) {
+    public void setDataValidade(LocalDate dataValidade) {
         this.dataValidade = dataValidade;
     }
 }

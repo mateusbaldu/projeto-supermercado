@@ -3,23 +3,24 @@ package Model;
 import Enum.Forma_Pagamentos;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
-public class Venda {
+public class Vendas {
     private Long idVenda;
     private String codBarrasNF;
     private Forma_Pagamentos forma_pagamento;
-    private BigDecimal valorVenda;
+    private BigDecimal precoTotalVenda;
     private BigDecimal valorRecebido;
     private BigDecimal valorTroco;
-    private Date dataVenda;
+    private LocalDate dataVenda;
     private String cpf_cliente;
 
-    public Venda(Long idVenda, String codBarrasNF, Forma_Pagamentos forma_pagamento, BigDecimal valorVenda, BigDecimal valorRecebido, BigDecimal valorTroco, Date dataVenda, String cpf_cliente) {
+    public Vendas(Long idVenda, String codBarrasNF, Forma_Pagamentos forma_pagamento, BigDecimal precoTotalVenda, BigDecimal valorRecebido, BigDecimal valorTroco, LocalDate dataVenda, String cpf_cliente) {
         setIdVenda(idVenda);
         setCodBarrasNF(codBarrasNF);
         setForma_pagamento(forma_pagamento);
-        setValorVenda(valorVenda);
+        setPrecoTotalVenda(precoTotalVenda);
         setValorRecebido(valorRecebido);
         setValorTroco(valorTroco);
         setDataVenda(dataVenda);
@@ -50,12 +51,12 @@ public class Venda {
         this.forma_pagamento = forma_pagamento;
     }
 
-    public BigDecimal getValorVenda() {
-        return valorVenda;
+    public BigDecimal getPrecoTotalVenda() {
+        return precoTotalVenda;
     }
 
-    public void setValorVenda(BigDecimal valorVenda) {
-        this.valorVenda = valorVenda;
+    public void setPrecoTotalVenda(BigDecimal precoTotalVenda) {
+        this.precoTotalVenda = precoTotalVenda;
     }
 
     public BigDecimal getValorRecebido() {
@@ -74,11 +75,11 @@ public class Venda {
         this.valorTroco = valorTroco;
     }
 
-    public Date getDataVenda() {
+    public LocalDate getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(Date dataVenda) {
+    public void setDataVenda(LocalDate dataVenda) {
         this.dataVenda = dataVenda;
     }
 

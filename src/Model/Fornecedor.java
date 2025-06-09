@@ -1,32 +1,34 @@
 package Model;
 
+import Services.CNPJ;
+
 public class Fornecedor {
-    private String cpf;
-    private String razao_social;
+    private CNPJ cnpj;
+    private String nome;
     private String endereco;
     private String contato;
 
-    public Fornecedor(String cpf, String razao_social, String endereco, String contato) {
-        setCpf(cpf);
-        setRazao_social(razao_social);
+    public Fornecedor(CNPJ cnpj, String nome, String endereco, String contato) {
+        setCnpj(cnpj);
+        setNome(nome);
         setEndereco(endereco);
         setContato(contato);
     }
 
-    public String getCpf() {
-        return cpf;
+    public CNPJ getCnpj() {
+        return cnpj;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCnpj(CNPJ cnpj) {
+        this.cnpj = cnpj;
     }
 
-    public String getRazao_social() {
-        return razao_social;
+    public String getNome() {
+        return nome;
     }
 
-    public void setRazao_social(String razao_social) {
-        this.razao_social = razao_social;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEndereco() {

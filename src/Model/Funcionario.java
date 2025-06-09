@@ -1,13 +1,14 @@
 package Model;
 import Enum.*;
+import Services.CPF;
 
 public class Funcionario {
-    private String cpf;
+    private CPF Cpf;
     private String nome;
     private Cargos cargo;
     private Permissoes permissao;
 
-    public Funcionario(String cpf, String nome, Cargos cargo, Permissoes permissao) {
+    public Funcionario(CPF cpf, String nome, Cargos cargo, Permissoes permissao) {
         setCpf(cpf);
         setNome(nome);
         setCargo(cargo);
@@ -22,12 +23,12 @@ public class Funcionario {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
+    public CPF getCpf() {
+        return Cpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCpf(CPF cpf) {
+        this.Cpf = cpf;
     }
 
     public Cargos getCargo() {

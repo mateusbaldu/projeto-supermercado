@@ -2,7 +2,8 @@ package Enum;
 
 public enum Forma_Pagamentos {
     DINHEIRO, 
-    DEBITO,
-    CREDITO,
-    PIX;
+    CARTAO_DE_DEBITO,
+    CARTAO_DE_CREDITO,
+    PIX,
+    VALE_ALIMENTACAO;
 }

@@ -1,6 +1,10 @@
 package Enum;
 
 public enum Permissoes {
-    BAIXA,
-    ALTA;
+    VISUALIZACAO,
+    BASICA,
+    INTERMEDIARIA,
+    AVANÇADA,
+    GERENCIADOR,
+    ADMINISTRADOR_DE_SISTEMA;
 }

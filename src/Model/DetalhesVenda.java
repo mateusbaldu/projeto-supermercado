@@ -3,18 +3,18 @@ package Model;
 import java.math.BigDecimal;
 
 public class DetalhesVenda {
-    private Long idDetalhes;
-    private Venda idVenda;
-    private Produto codBarras;
+    private Long idDetalhesVenda;
+    private Vendas idVendas;
+    private Produtos codigoDeBarrasProduto;
     private String nomeItem;
     private int quantidade;
     private BigDecimal preco;
     private BigDecimal subtotal;
 
-    public DetalhesVenda(Long idDetalhes, Venda idVenda, Produto codBarras, String nomeItem, int quantidade, BigDecimal preco, BigDecimal subtotal) {
+    public DetalhesVenda(Long idDetalhes, Vendas idVendas, Produtos codigoDeBarrasProduto, String nomeItem, int quantidade, BigDecimal preco, BigDecimal subtotal) {
         setIdDetalhes(idDetalhes);
-        setIdVenda(idVenda);
-        setCodBarras(codBarras);
+        setIdVenda(idVendas);
+        setCodigoDeBarrasProduto(codigoDeBarrasProduto);
         setNomeItem(nomeItem);
         setQuantidade(quantidade);
         setPreco(preco);
@@ -22,27 +22,27 @@ public class DetalhesVenda {
     }
 
     public Long getIdDetalhes() {
-        return idDetalhes;
+        return idDetalhesVenda;
     }
 
     public void setIdDetalhes(Long idDetalhes) {
-        this.idDetalhes = idDetalhes;
+        this.idDetalhesVenda = idDetalhes;
     }
 
-    public Venda getIdVenda() {
-        return idVenda;
+    public Vendas getIdVenda() {
+        return idVendas;
     }
 
-    public void setIdVenda(Venda idVenda) {
-        this.idVenda = idVenda;
+    public void setIdVenda(Vendas idVendas) {
+        this.idVendas = idVendas;
     }
 
-    public Produto getCodBarras() {
-        return codBarras;
+    public Produtos getCodigoDeBarrasProduto() {
+        return codigoDeBarrasProduto;
     }
 
-    public void setCodBarras(Produto codBarras) {
-        this.codBarras = codBarras;
+    public void setCodigoDeBarrasProduto(Produtos codigoDeBarrasProduto) {
+        this.codigoDeBarrasProduto = codigoDeBarrasProduto;
     }
 
     public String getNomeItem() {

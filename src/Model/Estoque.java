@@ -1,27 +1,32 @@
 package Model;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
+
+import Enum.*;
 
 public class Estoque {
     private Long idEstoque;
-    private Produto codBarras;
+    private Produtos codBarras;
+    private String cnpjFornecedor;
     private BigDecimal precoVenda;
     private BigDecimal precoCompra;
     private int quantidade;
-    private Date data_validade;
-    private String status;
+    private LocalDate data_validade;
+    private NivelDoEstoque statusEstoque;
     private boolean baixoEstoque;
 
 
-    public Estoque(Long idEstoque, BigDecimal precoVenda, BigDecimal precoCompra, int quantidade, Date data_validade, String status, boolean baixoEstoque) {
-        setIdEstoque(idEstoque);
-        setPrecoVenda(precoVenda);
-        setPrecoCompra(precoCompra);
-        setQuantidade(quantidade);
-        setData_validade(data_validade);
-        setStatus(status);
-        setBaixoEstoque(baixoEstoque);
+    public Estoque(Long idEstoque, Produtos codBarras, String cnpjFornecedor, BigDecimal precoVenda, BigDecimal precoCompra, int quantidade, LocalDate data_validade, NivelDoEstoque statusEstoque, boolean baixoEstoque) {
+        this.idEstoque = idEstoque;
+        this.codBarras = codBarras;
+        this.cnpjFornecedor = cnpjFornecedor;
+        this.precoVenda = precoVenda;
+        this.precoCompra = precoCompra;
+        this.quantidade = quantidade;
+        this.data_validade = data_validade;
+        this.statusEstoque = statusEstoque;
+        this.baixoEstoque = baixoEstoque;
     }
 
     public Long getIdEstoque() {
@@ -32,11 +37,11 @@ public class Estoque {
         this.idEstoque = idEstoque;
     }
 
-    public Produto getCodBarras() {
+    public Produtos getCodBarras() {
         return codBarras;
     }
 
-    public void setCodBarras(Produto codBarras) {
+    public void setCodBarras(Produtos codBarras) {
         this.codBarras = codBarras;
     }
 
@@ -64,20 +69,20 @@ public class Estoque {
         this.quantidade = quantidade;
     }
 
-    public Date getData_validade() {
+    public LocalDate getData_validade() {
         return data_validade;
     }
 
-    public void setData_validade(Date data_validade) {
+    public void setData_validade(LocalDate data_validade) {
         this.data_validade = data_validade;
     }
 
-    public String getStatus() {
-        return status;
+    public NivelDoEstoque getStatusEstoque() {
+        return statusEstoque;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusEstoque(NivelDoEstoque statusEstoque) {
+        this.statusEstoque = statusEstoque;
     }
 
     public boolean isBaixoEstoque() {
@@ -86,5 +91,13 @@ public class Estoque {
 
     public void setBaixoEstoque(boolean baixoEstoque) {
         this.baixoEstoque = baixoEstoque;
+    }
+
+    public String getCnpjFornecedor() {
+        return cnpjFornecedor;
+    }
+
+    public void setCnpjFornecedor(String cnpjFornecedor) {
+        this.cnpjFornecedor = cnpjFornecedor;
     }
 }
