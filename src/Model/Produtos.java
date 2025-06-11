@@ -1,23 +1,23 @@
 package Model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Produtos {
     private String codBarras;
     private String nome;
     private String categoria;
     private String marca;
-    private String precoCompra;
-    private LocalDate dataValidade;
 
-    public Produtos(String codBarras, String nome, String categoria, String marca, String precoCompra, LocalDate dataValidade) {
+    public Produtos(String codBarras, String nome, String categoria, String marca) {
         setCodBarras(codBarras);
         setNome(nome);
         setCategoria(categoria);
         setMarca(marca);
-        setPrecoCompra(precoCompra);
-        setDataValidade(dataValidade);
+    }
+
+    public Produtos() {
+
     }
 
     public String getCodBarras() {
@@ -52,19 +52,4 @@ public class Produtos {
         this.marca = marca;
     }
 
-    public String getPrecoCompra() {
-        return precoCompra;
-    }
-
-    public void setPrecoCompra(String precoCompra) {
-        this.precoCompra = precoCompra;
-    }
-
-    public LocalDate getDataValidade() {
-        return dataValidade;
-    }
-
-    public void setDataValidade(LocalDate dataValidade) {
-        this.dataValidade = dataValidade;
-    }
 }
